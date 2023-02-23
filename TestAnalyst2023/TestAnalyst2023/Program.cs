@@ -22,6 +22,10 @@ passwordBox.SendKeys("123123");
 IWebElement loginButton = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/form/div[3]/input[1]"));
 loginButton.Click();
 
+// Check Remember me button
+//IWebElement rememberBox = driver.FindElement(By.Id("RememberMe"));
+//rememberBox.Click();
+
 // Check if the log in was successful
 IWebElement helloHari = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
 
