@@ -1,36 +1,40 @@
-﻿// Open Chrome browser
-
+﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+
+// Open Chrome browser and maximize
 
 IWebDriver driver = new ChromeDriver();
 driver.Manage().Window.Maximize();
 
-// Launch turnup portal
+// Launch Turnup Portal
 driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
-// Identify the username textbox and enter the valid username
-IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
-usernameTextbox.SendKeys("hari");
 
-// Identify the password textbox and enter the valid password
-IWebElement passwordTextbox = driver.FindElement(By.Id("Password"));
-passwordTextbox.SendKeys("123123");
+// Identify username box and enter a valid username
+IWebElement userBox = driver.FindElement(By.Id("UserName"));
+userBox.SendKeys("hari");
 
+// Identify the password box and enter a valid password
+IWebElement passwordBox = driver.FindElement(By.Id("Password"));
+passwordBox.SendKeys("123123");
 
-// Identify login button and click on it
+// Click remember me checkbox
+IWebElement rememberBox = driver.FindElement(By.Id("RememberMe"));
+rememberBox.Click();
+
+// Click log in button
 IWebElement loginButton = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/form/div[3]/input[1]"));
 loginButton.Click();
 
-// Check if user has successfully logged in
+// Check if log in was successful
 IWebElement helloHari = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
+
 
 if (helloHari.Text == "Hello hari!")
 {
-    Console.WriteLine("Log in Successfully");
+    Console.WriteLine("Log in successful");
 }
 else
 {
-    Console.WriteLine("Log In Fail!");
+    Console.WriteLine("Log in fail");
 }
-
-// BRUNO
