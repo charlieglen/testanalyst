@@ -1,6 +1,10 @@
 ﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Threading;
+using System.Timers;
+
+
 
 // Open Chrome browser and maximize
 // If Selenium Chrome driver was not installed. You have to download and add the file path manually inside ChromeDriver()
@@ -79,14 +83,14 @@ inputPricePerUnit.SendKeys("1000");
 // Click on save button
 IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
 saveButton.Click();
-// Check if new Time record has been created
-
 
 // Go to the last page
 
 Thread.Sleep(2000);
 IWebElement goToLastPage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
 goToLastPage.Click();
+
+// Check if new Time record has been created
 
 IWebElement newRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
@@ -98,4 +102,41 @@ else
 {
     Console.WriteLine("Record creation failed");
 }
+
+
+// Edit newly created record
+IWebElement editRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+editRecord.Click();
+
+IWebElement editDescription = driver.FindElement(By.XPath("//*[@id=\"Description\"]"));
+editDescription.Clear();
+editDescription.SendKeys("Edited Record Test");
+
+// Saving after edit
+
+driver.FindElement(By.Id("SaveButton")).Click();
+
+//IWebElement saveButtonAfterEdit = driver.FindElement(By.Id("SaveButton"));
+//saveButtonAfterEdit.Click();
+
+// Go to last page after edit
+
+Thread.Sleep(2000);
+driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span")).Click();
+
+//IWebElement goToLastPageAfterEdit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+//goToLastPageAfterEdit.Click();
+
+// Delete a newly created/edited record
+
+
+
+
+
+
+
+
+
+
+
 
