@@ -1,8 +1,11 @@
 ﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools.V108.WebAuthn;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Timers;
+using System.Globalization;
 
 
 
@@ -41,7 +44,7 @@ if (helloHari.Text == "Hello hari!")
 }
 else
 {
-    Console.WriteLine("Log in fail");
+    Console.WriteLine("Log in failed");
 }
 
 // Create a new Time record
@@ -55,11 +58,13 @@ IWebElement tmOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul
 tmOption.Click();
 
 // Click on Create new
+
 IWebElement createNew = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
 createNew.Click();
 Thread.Sleep(1000);
 
 // Select Time option from dropdown list
+
 IWebElement typecodeSelect = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[2]/span"));
 typecodeSelect.Click();
 
@@ -72,17 +77,20 @@ IWebElement inputCode = driver.FindElement(By.XPath("//*[@id=\"Code\"]"));
 inputCode.SendKeys("Charlie");
 
 // Input description in the Description text box
+
 IWebElement inputDescription = driver.FindElement(By.XPath("//*[@id=\"Description\"]"));
 inputDescription.SendKeys("Charlie");
 
 // Input price unit in the PriceUnit text box
+
 IWebElement inputPricePerUnit = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
 inputPricePerUnit.SendKeys("1000");
 
-
 // Click on save button
+
 IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
 saveButton.Click();
+
 
 // Go to the last page
 
@@ -96,7 +104,7 @@ IWebElement newRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]
 
 if (newRecord.Text == "Charlie")
 {
-    Console.WriteLine("Record Created");
+    Console.WriteLine("Record created");
 }
 else
 {
@@ -105,32 +113,65 @@ else
 
 
 // Edit newly created record
+
 IWebElement editRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
 editRecord.Click();
 
+IWebElement editCode = driver.FindElement(By.XPath("//*[@id=\"Code\"]"));
+editCode.Clear();
+editCode.SendKeys("Edited Code");
+
 IWebElement editDescription = driver.FindElement(By.XPath("//*[@id=\"Description\"]"));
 editDescription.Clear();
-editDescription.SendKeys("Edited Record Test");
+editDescription.SendKeys("Edited Description");
+
+IWebElement editPricePerUnit = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
+editPricePerUnit.Click();
+
+IWebElement Price = driver.FindElement(By.Id("Price"));
+Price.Clear();
+editPricePerUnit.SendKeys("23234");
 
 // Saving after edit
 
-driver.FindElement(By.Id("SaveButton")).Click();
-
-//IWebElement saveButtonAfterEdit = driver.FindElement(By.Id("SaveButton"));
-//saveButtonAfterEdit.Click();
+Thread.Sleep(1000);
+IWebElement saveButtonAfterEdit = driver.FindElement(By.Id("SaveButton"));
+saveButtonAfterEdit.Click();
 
 // Go to last page after edit
 
-Thread.Sleep(2000);
-driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span")).Click();
+Thread.Sleep(1000);
+IWebElement goToLastPageAfterEdit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+goToLastPageAfterEdit.Click();
 
-//IWebElement goToLastPageAfterEdit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-//goToLastPageAfterEdit.Click();
+IWebElement editedRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+IWebElement editedDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+IWebElement editedPricePerUnit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+
+
+if (editedRecord.Text == "Edited Code")
+{
+    if (editedDescription.Text == "Edited Description")
+ 
+        {
+            Console.WriteLine("Edit Successful");
+        }
+}
+else
+{
+    Console.WriteLine("Edit Failed");
+}
+
+
 
 // Delete a newly created/edited record
 
 
+IWebElement deleteRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+deleteRecord.Click();
 
+IAlert alert = driver.SwitchTo().Alert();
+alert.Accept();
 
 
 
