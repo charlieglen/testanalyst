@@ -128,8 +128,8 @@ editDescription.SendKeys("Edited Description");
 IWebElement editPricePerUnit = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
 editPricePerUnit.Click();
 
-IWebElement Price = driver.FindElement(By.Id("Price"));
-Price.Clear();
+IWebElement price = driver.FindElement(By.Id("Price"));
+price.Clear();
 editPricePerUnit.SendKeys("23234");
 
 // Saving after edit
