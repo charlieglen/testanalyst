@@ -27,5 +27,15 @@ namespace TestAnalyst2023.Pages
             IWebElement tmOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             tmOption.Click();
         }
+
+        public void GoToEmployeesPage(IWebDriver driver)
+        {
+
+            IWebElement administrationDropdodwn = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            administrationDropdodwn.Click();
+
+            IWebElement EmployeesOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a"));
+            EmployeesOption.Click();
+        }
     }
 }

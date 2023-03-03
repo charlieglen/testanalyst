@@ -14,54 +14,37 @@ using static System.Net.Mime.MediaTypeNames;
 namespace TestAnalyst2023.Tests
 {
     [TestFixture]
+    [Parallelizable]
     public class TM_Tests : CommonDriver
     {
-        [SetUp]
-        public void LoginSteps()
-        {
-            // Open Chrome Browser
-            driver = new ChromeDriver();
 
-            // Log in page object initializationa dn definiation
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginActions(driver);
+        HomePage homePageObj = new HomePage();
+        TMPage tmPageObj = new TMPage();
 
-            // Home page object initialization andd defination
-            HomePage homePageObj = new HomePage();
-            homePageObj.GoToTMPage(driver);
-        }
-        [Test]
+        [Test, Order(1)]
         public void CreateTMTest()
         {
 
-            // TM page object initialization andd definition
-            TMPage tmPageObj = new TMPage();
+            homePageObj.GoToTMPage(driver);
             tmPageObj.CreateTM(driver);
 
         }
 
-        [Test]
+        [Test, Order(2)]
         public void EditTMTest()
         {
-            // Edit TM
-            TMPage tmPageObj = new TMPage();
+            homePageObj.GoToTMPage(driver);
             tmPageObj.EditTM(driver);
 
         }
-        [Test]
+        [Test, Order(3)]
         public void DeleteTMTest()
         {
-            // Delete TM
-            TMPage tmPageObj = new TMPage();
+            homePageObj.GoToTMPage(driver);
             tmPageObj.DeleteTM(driver);
 
         }
-        [TearDown]
-        public void CloseTestRun()
-        { 
         
-        }
-
     }
 }
 

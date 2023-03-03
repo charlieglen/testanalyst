@@ -73,7 +73,7 @@ namespace TestAnalyst2023.Pages
             editPricePerUnit.SendKeys("23234");
             */
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             IWebElement goToLastPage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPage.Click();
 
