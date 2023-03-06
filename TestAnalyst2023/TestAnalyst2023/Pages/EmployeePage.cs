@@ -40,7 +40,7 @@ namespace TestAnalyst2023.Pages
             IWebElement employeeVehicle = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[7]/div/span[1]/span/input"));
             employeeVehicle.SendKeys("12356");
 
-            IWebElement employeeGroup = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[8]/div/div/div[1]"));
+            IWebElement employeeGroup = driver.FindElement(By.XPath("//*[@id=\"UserEditForm\"]/div/div[8]/div/div"));
             employeeGroup.Click();
 
             Thread.Sleep(1000);

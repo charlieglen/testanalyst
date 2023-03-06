@@ -16,8 +16,10 @@ namespace TestAnalyst2023.Pages
             /* Implicit Wait
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             // To use an Explicit Wait we addd below condition
+            // must download nuget package for explicit wait - dotnetseleniumextras.waithelpers 
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a")));
             */
+
 
             // Navigate to time and material page
             IWebElement administrationDropdodwn = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));

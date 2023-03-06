@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TestAnalyst2023.Pages
-{
+{ 
     public class LoginPage
     {
         public void LoginActions(IWebDriver driver)
